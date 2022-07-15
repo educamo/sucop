@@ -56,7 +56,7 @@ class Administracion extends CI_Controller
     {
         $data['filtro'] = $this->input->post('filtro');
         $data['numero'] = $this->input->post('numero');
-        // TODO: hacer vista que se va a cargar la tabla con los datos del cliente a demás de hacer migration de la tabla Clientes
+        // TODO: hacer vista que se va a cargar la tabla con los datos del cliente
         echo $data['filtro'];
         echo $data['numero'];
         return $data;
