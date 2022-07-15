@@ -32,31 +32,31 @@
                         <fieldset>
                             <legend>Elige un metodo de filtrar</legend>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="filtro" id="cedula" value="cedula" checked>
+                                <input class="form-check-input" type="radio" name="filtro" id="cedula" value="clienteId" checked>
                                 <label class="form-check-label" for="cedula">
                                     Cedula de Identidad
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="filtro" id="rif" value="rif">
+                                <input class="form-check-input" type="radio" name="filtro" id="rif" value="clienteRif">
                                 <label class="form-check-label" for="rif">
                                     R.I.F.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="filtro" id="nic" value="nic">
+                                <input class="form-check-input" type="radio" name="filtro" id="nic" value="clienteNic">
                                 <label class="form-check-label" for="nic">
                                     N.I.C.
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="filtro" id="contrato" value="contrato">
+                                <input class="form-check-input" type="radio" name="filtro" id="contrato" value="clienteSap">
                                 <label class="form-check-label" for="contrato">
                                     Contrato SAP
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="filtro" id="contador" value="contador">
+                                <input class="form-check-input" type="radio" name="filtro" id="contador" value="clienteContador">
                                 <label class="form-check-label" for="contador">
                                     Contador N°
                                 </label>
