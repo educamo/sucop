@@ -24,17 +24,18 @@ Mira Deployment para conocer como desplegar el proyecto.
 
 * Descargar o Clonar el proyecto desde el repositorio de github en el directorio raíz de tu servidor web.
 
-* Una vez tengas el directorio del proyecto descargado, deberas ir al archivo: "application/config/database.php" y modificar las sigientes lineas
+* Una vez tengas el directorio del proyecto descargado, deberás ir al archivo: "application/config/database.php" y modificar las siguientes lineas
 
         'username' => 'root',
         'password' => '',
 
 
-por el usuario y password de tu servidor de base de datos
+  * cambia los valores por el usuario y password de tu servidor de base de datos
+
 
 * Luego crea la base de datos "db_sucop" en tu servidor Mysql
 
-* Después abre la Terminal y ve a la directorio raíz del proyecto y ejecutas el siguiente comando:
+* Después abre la Terminal y ve al directorio raíz del proyecto y ejecutas el siguiente comando:
 
             php index.php migrate
 
@@ -42,8 +43,14 @@ por el usuario y password de tu servidor de base de datos
 * Ahora abres el explorador de tu preferencia y ve a la direccion
 
         http://localhost/sucop/
-        Usuario: educamo
-        Password: 1234
+
+  - Usuario:
+
+        educamo
+
+  - Password:
+
+        1234
 
 ## Construido con 🛠️
 - Html5

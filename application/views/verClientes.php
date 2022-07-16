@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-8">
                         <label for="numero">Introduzca el numero a consultar</label>
-                        <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero">
+                        <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero" autofocus>
                     </div>
                 </div>
                 <div class="row justify-content-end">
@@ -74,7 +74,8 @@
                     </div>
                 </div>
             </form>
-            <div class="row" id="mensaje"></div>
+            <div class="row mt-3" id="mensaje">
+            </div>
         </div>
     </div>
 
@@ -111,7 +112,8 @@
 
 
                     beforeSend: function(objeto) {
-                        $("#mensaje").html("Mensaje: Cargando...");
+                        var cargando =  '<div class="d-flex align-items-center"><strong>Cargando... </strong><div class="spinner-border ms-auto text-primary " role="status" aria-hidden="true"></div></div>';
+                        $("#mensaje").html(cargando);
                     },
                     success: function(data) {
                         $("#mensaje").html(data);

@@ -57,9 +57,10 @@ class Administracion extends CI_Controller
         $data['filtro'] = $this->input->post('filtro');
         $data['numero'] = $this->input->post('numero');
         // TODO: hacer vista que se va a cargar la tabla con los datos del cliente
-        echo $data['filtro'];
-        echo $data['numero'];
-        return $data;
+
+        $view = $this->load->view('updateClientes', $data);
+        $this->load->view('administracion/end');
+        return $view;
     }
 
     public function nuevoUsuario()
