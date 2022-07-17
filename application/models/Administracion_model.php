@@ -9,21 +9,41 @@ class Administracion_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('nu_users');
-        return $this->db->count_all_results();
+        $cantUsers = $this->db->count_all_results();
+
+        $this->db->select('*');
+        $this->db->from('nu_Clientes');
+        $cantClientes = $this->db->count_all_results();
+
+        $this->db->select_sum('total');
+        $this->db->from('nu_facturas');
+        $this->db->where('pagado', 0);
+        $query = $this->db->get();
+        $deudaTotal = $query->result_array();
+
+        $datos = array(
+            'usuarios' => $cantUsers,
+            'clientes' => $cantClientes,
+            'deuda' => $deudaTotal[0],
+        );
+
+        return $datos;
+
     }
 
     public function guardarUsuario($datos = 0)
     {
         $datos = array(
-            'idUser' => $datos['idUser'],
-            'nombreUser' => $datos['nombreUser'],
-            'apellidoUser' => $datos['apellidoUser'],
-            'email' => $datos['email'],
-            'clave' => $datos['clave'],
-            'administrador' => $datos['administrador'],
+            'userId' => $datos['userId'],
+            'userName' => $datos['userName'],
+            'password' => $datos['password'],
+            'mail' => $datos['mail'],
+            'direccion' => $datos['direccion'],
+            'activo' => 1,
+            'admin' => $datos['admin'],
         );
 
-        $this->db->insert('usuarios', $datos);
+        $this->db->insert('nu_users', $datos);
     }
 
     public function verUsuarios()
@@ -58,6 +78,13 @@ class Administracion_model extends CI_Model
         return $this->db->update('usuarios', $data);
     }
 
+    public function borrarUsuario($id)
+    {
+        $this->db->where('userId', $id);
+        $this->db->delete('nu_users');
+        return true;
+    }
+
     public function consultarCliente($datos)
     {
         $campo = $datos['filtro'];
@@ -84,8 +111,8 @@ class Administracion_model extends CI_Model
     {
         $datosCliente = array(
             'clienteId' => $this->input->post('clienteId'),
-            'clienteRif'=> $this->input->post('clienteRif'),
-            'clienteNic'=> $this->input->post('clienteNic'),
+            'clienteRif' => $this->input->post('clienteRif'),
+            'clienteNic' => $this->input->post('clienteNic'),
             'clienteContador' => $this->input->post('clienteContador'),
             'clienteSap' => $this->input->post('clienteSap'),
             'clienteName' => $this->input->post('clienteName'),
@@ -128,7 +155,7 @@ class Administracion_model extends CI_Model
     }
     public function guardarCliente($datos = null)
     {
-       return $this->db->insert('nu_clientes', $datos);
+        return $this->db->insert('nu_clientes', $datos);
     }
 
     public function guardarMedidor($datos = null)

@@ -9,6 +9,7 @@
             $this->db->from('nu_users');
             $this->db->where('userName', $data['usuario']);
             $this->db->where('password', $data['clave']);
+            $this->db->where('activo', 1);
 
             $query=$this->db->get();
 

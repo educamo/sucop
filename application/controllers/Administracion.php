@@ -17,7 +17,7 @@ class Administracion extends CI_Controller
     {
 
         if ($this->session->userdata('userId')) {
-            $datos['usuarios'] = $this->Administracion_model->dasboard();
+            $datos = $this->Administracion_model->dasboard();
 
             $this->plantilla();
 
@@ -65,10 +65,6 @@ class Administracion extends CI_Controller
             $facturas = $this->Administracion_model->consultarFacturas($id);
             $data->facturas = $facturas;
         }
-
-
-        //var_dump($facturas); die();
-
 
         if ($data == NULL) {
             $view = 0;
@@ -207,6 +203,11 @@ class Administracion extends CI_Controller
         } else {
             $this->session->set_flashdata('status', 'Ocurrio un Error al Actualizar el Usuario');
         }
+        redirect("Administracion/listUsuario");
+    }
+    public function borrarUsuario($id)
+    {
+        $this->Administracion_model->borrarUsuario($id);
         redirect("Administracion/listUsuario");
     }
 

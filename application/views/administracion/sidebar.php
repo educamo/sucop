@@ -9,7 +9,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>Administracion">
         <div class="sidebar-brand-icon rotate-n-15">
-        <img src="<?= base_url() ?>assets/img/logo.png" alt="Logo" style="width: 50%; height: 50%;">
+          <img src="<?= base_url() ?>assets/img/logo.png" alt="Logo" style="width: 50%; height: 50%;">
         </div>
         <div class="sidebar-brand-text mx-3">SUCOP</div>
       </a>
@@ -43,20 +43,29 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-lock"></i>
-          <span>Administración</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Administrar:</h6>
-            <a class="collapse-item" href="<?= base_url() ?>Administracion/listUsuario">Registros de Usuarios</a>
-            <a class="collapse-item" href="<?= base_url() ?>Administracion/nuevoUsuario">Nuevo Usuario</a>
+      <?Php
+      $admin = $this->session->administrador;
+      if ($admin == 1) {
+      ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-lock"></i>
+            <span>Administración</span>
+          </a>
+          <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Administrar:</h6>
+              <a class="collapse-item" href="<?= base_url() ?>Administracion/listUsuario">Registros de Usuarios</a>
+              <a class="collapse-item" href="<?= base_url() ?>Administracion/nuevoUsuario">Nuevo Usuario</a>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="nav-item">
+        </li>
+      <?Php
+      }
+      ?>
+
+
+      <li class="nav-item" style="display: none;">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsepago" aria-expanded="true" aria-controls="collapsepago">
           <i class="fas fa-fw fa-clipboard-list"></i>
           <span>Ventas</span>
@@ -70,7 +79,6 @@
         </div>
       </li>
 
-   
 
 
       <!-- Divider -->
