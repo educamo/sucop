@@ -62,13 +62,10 @@ class Administracion_model extends CI_Model
     {
         $campo = $datos['filtro'];
         $valor = $datos['numero'];
-        $this->db->select('c.clienteId, c.clienteRif, c.clienteNic, c.clienteContador, c.clienteSap, c.clienteName, c.telefono, c.mail, c.direccion, c.referencia, c.lat, c.lng, m.serial, m.instalacion, m.aol, m.unidadL, m.dac, m.fabricante, m.ruta, m.itinerario, m.tarifaId, f.total');
+        $this->db->select('c.clienteId, c.clienteRif, c.clienteNic, c.clienteContador, c.clienteSap, c.clienteName, c.telefono, c.mail, c.direccion, c.referencia, c.lat, c.lng, m.serial, m.instalacion, m.aol, m.unidadL, m.dac, m.fabricante, m.ruta, m.itinerario, m.tarifaId');
         $this->db->from('nu_clientes c');
         $this->db->join('nu_medidores m', 'm.clienteId = c.clienteId');
-        $this->db->join('nu_facturas f', 'f.clienteId = c.clienteId', 'left');
-        $this->db->select_sum('f.total', 'deuda');
         $this->db->where('c.' . $campo, $valor);
-        $this->db->where('f.pagado', 0);
         $query = $this->db->get();
         return $query->row();
     }
@@ -96,6 +93,8 @@ class Administracion_model extends CI_Model
             'mail' => $this->input->post('mail'),
             'direccion' => $this->input->post('direccion'),
             'referencia' => $this->input->post('referencia'),
+            'lat' => $this->input->post('lat'),
+            'lng' => $this->input->post('lng'),
         );
         $this->db->where('clienteId', $datos['clienteId2']);
 
@@ -126,6 +125,15 @@ class Administracion_model extends CI_Model
         $this->db->where('clienteId', $datos['clienteId2']);
         $this->db->update('nu_facturas', array('clienteId' => $datos['clienteId']));
         return true;
+    }
+    public function guardarCliente($datos = null)
+    {
+       return $this->db->insert('nu_clientes', $datos);
+    }
+
+    public function guardarMedidor($datos = null)
+    {
+        return $this->db->insert('nu_medidores', $datos);
     }
 
     public function __destruct()

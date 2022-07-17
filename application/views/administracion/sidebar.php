@@ -38,7 +38,6 @@
             <h6 class="collapse-header">Administracion</h6>
             <a class="collapse-item" href="<?= base_url() ?>Administracion/actualizacion">Ver</a>
             <a class="collapse-item" href="<?= base_url() ?>Administracion/nuevoCliente">Nuevo</a>
-            <a class="collapse-item" href="<?= base_url() ?>Administracion/eliminarCliente">Eliminar</a>
           </div>
         </div>
       </li>

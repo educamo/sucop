@@ -2,6 +2,7 @@
     <hr>
     <?Php
     $cant = 0;
+    $deuda = 0;
     ?>
 
     <form action="#" method="post" name="updateClientes" id="updateClientes">
@@ -50,9 +51,17 @@
         </div>
 
         <div class="row mt-1">
-            <div class="col col-md-12">
+            <div class="col col-md-8">
                 <label for="direccion" class="form-label">Dirección</label>
                 <input type="text" class="form-control" name="direccion" id="direccion" value="<?= $direccion ?>">
+            </div>
+            <div class="col col-md-2">
+                <label for="lat" class="form-label">Latitud</label>
+                <input type="text" class="form-control" name="lat" id="lat" value="<?= $lat ?>">
+            </div>
+            <div class="col col-md-2">
+                <label for="lng" class="form-label">Longtud</label>
+                <input type="text" class="form-control" name="lng" id="lng" value="<?= $lng ?>">
             </div>
         </div>
 
@@ -71,6 +80,7 @@
                         <?Php
                         foreach ($facturas as $factura) {
                             $cant = $cant + 1;
+                            $deuda = $deuda + $factura->total;
                         ?>
                             <tr>
                                 <td><?= $factura->facturaN ?></td>
