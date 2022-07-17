@@ -39,30 +39,37 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <label for="idUser" class="form-label">Cedula del Usuario</label>
-                                        <input type="text" id="idUser" name="idUser" class="form-control" required pattern="[0-9]+" minlength="7" maxlength="8" value="<?=$usuario->idUser?>">
-                                        <input type="hidden" id="cedula" name="cedula" class="form-control" required pattern="[0-9]+" minlength="7" maxlength="8" value="<?=$usuario->idUser?>">
+                                        <label for="userId" class="form-label">Cedula del Usuario</label>
+                                        <input type="text" id="userId" name="userId" class="form-control" required pattern="[0-9]+" minlength="7" maxlength="8" value="<?=$usuario->userId?>">
+                                        <input type="hidden" id="cedula" name="cedula" class="form-control" required pattern="[0-9]+" minlength="7" maxlength="8" value="<?=$usuario->userId?>">
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="nombreUser" class="form-label">Nombre del Usuario</label>
-                                        <input type="text" id="nombreUser" name="nombreUser" class="form-control" required pattern="[a-zA-Z\s]*" minlength="2" maxlength="20" value="<?=$usuario->nombreUser?>">
+                                        <label for="userName" class="form-label">Nombre del Usuario</label>
+                                        <input type="text" id="userName" name="userName" class="form-control" required pattern="[a-zA-Z\s]*" minlength="2" maxlength="20" value="<?=$usuario->userName?>">
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="apellidoUser" class="form-label">Apellido del Usuario</label>
-                                        <input type="text" id="apellidoUser" name="apellidoUser" class="form-control" required pattern="[a-zA-Z\s]*" minlength="2" maxlength="20" value="<?=$usuario->apellidoUser?>">
+                                        <label for="mail" class="form-label">Email</label>
+                                        <input type="email" name="mail" id="mail" class="form-control" required value="<?=$usuario->mail?>">
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" required value="<?=$usuario->email?>">
+                                        <label for="direccion" class="form-label">Dirección</label>
+                                        <input type="text" id="direccion" name="direccion" class="form-control" value="<?=$usuario->direccion?>">
                                     </div>
                                     <div class="col-lg-4">
-                                        <label for="administrador" class="form-label">Administrador</label>
-                                        <select name="administrador" id="administrador" class="form-select">
-                                            <option value="0" <?php if ($usuario->administrador == 0)  echo 'selected'?>>Usuario</option>
-                                            <option value="1" <?php if ($usuario->administrador == 1)  echo 'selected'?>>Administrador</option>
+                                        <label for="activo" class="form-label">Activo</label>
+                                        <select name="activo" id="activo" class="form-select">
+                                            <option value="0" <?php if ($usuario->activo == 0)  echo 'selected'?>>Desactivado</option>
+                                            <option value="1" <?php if ($usuario->activo == 1)  echo 'selected'?>>Activo</option>
                                         </select>
                                     </div>
-                                    
+                                    <div class="col-lg-4">
+                                        <label for="admin" class="form-label">Administrador</label>
+                                        <select name="admin" id="admin" class="form-select">
+                                            <option value="0" <?php if ($usuario->admin == 0)  echo 'selected'?>>Usuario</option>
+                                            <option value="1" <?php if ($usuario->admin == 1)  echo 'selected'?>>Administrador</option>
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -86,5 +93,5 @@
     </div>
 </div>
     <!-- End of Main Content -->
-    
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

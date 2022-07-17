@@ -48,7 +48,7 @@ class Administracion_model extends CI_Model
 
     public function verUsuarios()
     {
-        $this->db->select('userId, userName, mail, admin');
+        $this->db->select('userId, userName, mail, admin, activo');
         $this->db->from('nu_users');
         $query = $this->db->get();
         return $query->result();
@@ -56,7 +56,7 @@ class Administracion_model extends CI_Model
 
     public function mostrarUsuario($id = 0)
     {
-        $this->db->select('userId, userName, mail, admin');
+        $this->db->select('*');
         $this->db->from('nu_users');
         $this->db->where('userId', $id);
         $query = $this->db->get();
@@ -66,16 +66,17 @@ class Administracion_model extends CI_Model
     public function actualizarUsuario($datos)
     {
         $data = array(
-            'idUser'        => $datos['idUser'],
-            'nombreUser'    => $datos['nombreUser'],
-            'apellidoUser'  => $datos['apellidoUser'],
-            'email'         => $datos['email'],
-            'administrador' => $datos['administrador'],
+            'userId'        => $datos['userId'],
+            'userName'    => $datos['userName'],
+            'mail'         => $datos['mail'],
+            'direccion' => $datos['direccion'],
+            'activo' => $datos['activo'],
+            'admin' => $datos['admin'],
         );
 
-        $this->db->where('idUser', $datos['cedula']);
+        $this->db->where('userId', $datos['cedula']);
 
-        return $this->db->update('usuarios', $data);
+        return $this->db->update('nu_users', $data);
     }
 
     public function borrarUsuario($id)

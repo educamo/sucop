@@ -7,11 +7,11 @@ class Migration_insert_user extends CI_Migration {
         public function up()
         {
                 $this->db->insert('nu_users', [
-                    'userId' => '16153887',
-                    'userName' => 'educamo',
+                    'userId' => '18351778',
+                    'userName' => 'admin',
                     'password' => '1234',
                     'mail' => 'correo@gmail.com',
-                    'direccion' => 'los mangos',
+                    'direccion' => 'tachira',
                     'activo' => 1,
                     'admin' => 1,
                 ]);

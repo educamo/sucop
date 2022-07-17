@@ -34,6 +34,7 @@
             <th>Nombre de Usuario</th>
             <th>Email</th>
             <th>Administrador</th>
+            <th>Esta Activo</th>
             <th>Accion</th>
           </tr>
         </thead>
@@ -46,12 +47,18 @@
                     }else {
                         $administrador = 'No';
                     }
+                    if ($usuario->activo == 1) {
+                      $activo = 'Si';
+                    }else {
+                      $activo = 'No';
+                    }
             ?> 
           <tr>
             <td><?=$usuario->userId?></td>
             <td><?=$usuario->userName?></td>
             <td><?=$usuario->mail?></td>
             <td><?=$administrador?></td>
+            <td><?= $activo ?></td>
             <td class="text-center">
                 <a href="<?= base_url() ?>Administracion/actualizarUsuario/<?=$usuario->userId?>" class="btn btn-warning text-ligth"> <i class="fa fa-edit"></i></a>
                 <a href="<?= base_url() ?>Administracion/borrarUsuario/<?=$usuario->userId?>" class="btn btn-danger text-ligth"> <i class="fa fa-trash"></i></a>
