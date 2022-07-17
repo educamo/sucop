@@ -65,12 +65,12 @@
                     </div>
                     <div class="col-md-8">
                         <label for="numero">Introduzca el numero a consultar</label>
-                        <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero" autofocus>
+                        <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero" autofocus required>
                     </div>
                 </div>
                 <div class="row justify-content-end">
                     <div class="col-md-6 align-self-end">
-                        <button type="submit" class="btn btn-primary mb-3">Consultar Cliente</button>
+                        <button type="submit" class="btn btn-primary mb-3" id="consultar">Consultar Cliente</button>
                     </div>
                 </div>
             </form>
@@ -114,9 +114,20 @@
                     beforeSend: function(objeto) {
                         var cargando =  '<div class="d-flex align-items-center"><strong>Cargando... </strong><div class="spinner-border ms-auto text-primary " role="status" aria-hidden="true"></div></div>';
                         $("#mensaje").html(cargando);
+                        $("#consultar").attr('disabled', 'disabled');
+                        $("#numero").attr('disabled', 'disabled');
+                        $("[name='filtro']").attr('disabled', 'disabled');
                     },
                     success: function(data) {
-                        $("#mensaje").html(data);
+                        if (data== 0) {
+                            $('#mensaje').html("El Cliente no existe, por favor verifica los datos");
+                            $("#consultar").removeAttr('disabled');
+                            $("#numero").removeAttr('disabled');
+                            $("[name='filtro']").removeAttr('disabled');
+
+                        }else{
+                            $("#mensaje").html(data);
+                        }
                     }
                 })
         });

@@ -56,11 +56,66 @@ class Administracion extends CI_Controller
     {
         $data['filtro'] = $this->input->post('filtro');
         $data['numero'] = $this->input->post('numero');
-        // TODO: hacer vista que se va a cargar la tabla con los datos del cliente
 
-        $view = $this->load->view('updateClientes', $data);
-        $this->load->view('administracion/end');
+        $data = $this->Administracion_model->consultarCliente($data);
+
+        $id = $data->clienteId;
+
+
+        $facturas = $this->Administracion_model->consultarFacturas($id);
+        //var_dump($facturas); die();
+
+        $data->facturas = $facturas;
+
+        //var_dump($data); die();
+        if ($data->clienteId == NULL) {
+            $view = 0;
+        } else {
+            $view = $this->load->view('updateClientes', $data);
+            $this->load->view('administracion/end');
+        }
+
         return $view;
+    }
+
+    public function updateCliente()
+    {
+        $datosCliente = array(
+            'clienteId' => $this->input->post('clienteId'),
+            'clienteRif' => $this->input->post('clienteRif'),
+            'clienteNic' => $this->input->post('clienteNic'),
+            'clienteContador' => $this->input->post('clienteContador'),
+            'clienteSap' => $this->input->post('clienteSap'),
+            'clienteName' => $this->input->post('clienteName'),
+            'telefono' => $this->input->post('telefono'),
+            'mail' => $this->input->post('mail'),
+            'direccion' => $this->input->post('direccion'),
+            'referencia' => $this->input->post('referencia'),
+            'clienteId2' => $this->input->post('clienteId2'),
+        );
+
+        $datosMedidor = array(
+            'serial' => $this->input->post('serial'),
+            'instalacion' => $this->input->post('instalacion'),
+            'aol' => $this->input->post('aol'),
+            'unidadL' => $this->input->post('unidadL'),
+            'dac' => $this->input->post('dac'),
+            'fabricante' => $this->input->post('fabricante'),
+            'ruta' => $this->input->post('ruta'),
+            'itinerario' => $this->input->post('itinerario'),
+            'tarifaId' => $this->input->post('tarifa'),
+            'clienteId' => $this->input->post('clienteId'),
+            'clienteId2' => $this->input->post('clienteId2'),
+        );
+
+        if ($datosCliente['clienteId'] !== $datosCliente['clienteId2']) {
+            $this->Administracion_model->updateFacturas($datosCliente);
+        }
+
+        $resultadoUpdacliente = $this->Administracion_model->updateCliente($datosCliente);
+
+        $resultadoUpdatemedidor = $this->Administracion_model->updateMedidor($datosMedidor);
+        return true;
     }
 
     public function nuevoUsuario()
