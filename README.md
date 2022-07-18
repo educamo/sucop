@@ -46,7 +46,7 @@ Mira Deployment para conocer como desplegar el proyecto.
 
   - Usuario:
 
-        educamo
+        admin
 
   - Password:
 
