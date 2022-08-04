@@ -45,7 +45,7 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <?Php
       $admin = $this->session->administrador;
-      if ($admin == 1) {
+      if ($admin == 2) {
       ?>
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -60,12 +60,9 @@
             </div>
           </div>
         </li>
-      <?Php
-      }
-      ?>
 
 
-      <li class="nav-item" style="display: none;">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsepago" aria-expanded="true" aria-controls="collapsepago">
           <i class="fas fa-fw fa-clipboard-list"></i>
           <span>Ventas</span>
@@ -79,6 +76,9 @@
         </div>
       </li>
 
+      <?Php
+      }
+      ?>
 
 
       <!-- Divider -->
