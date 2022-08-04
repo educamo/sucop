@@ -7,19 +7,26 @@ class Administracion_model extends CI_Model
 
     public function dasboard()
     {
-        $this->db->select('*');
-        $this->db->from('nu_users');
-        $cantUsers = $this->db->count_all_results();
 
         $this->db->select('*');
         $this->db->from('nu_Clientes');
         $cantClientes = $this->db->count_all_results();
+
+        $admin = $this->session->administrador;
+        if ($admin == 2) {
+            $this->db->select('*');
+            $this->db->from('nu_users');
+            $cantUsers = $this->db->count_all_results();
 
         $this->db->select_sum('total');
         $this->db->from('nu_facturas');
         $this->db->where('pagado', 0);
         $query = $this->db->get();
         $deudaTotal = $query->result_array();
+      }else{
+        $cantUsers =0;
+        $deudaTotal[0] =0;
+      };
 
         $datos = array(
             'usuarios' => $cantUsers,
