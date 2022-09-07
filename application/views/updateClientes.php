@@ -1,8 +1,8 @@
-<div class="container">
-    <hr>
+<div class="container vistaCliente mt-0">
     <?Php
     $cant = 0;
     $deuda = 0;
+    $demo = $version;
     ?>
 
     <form action="#" method="post" name="updateClientes" id="updateClientes">
@@ -66,6 +66,9 @@
         </div>
 
         <!-- datatable -->
+        <?Php
+           if ($demo==0){
+        ?> 
         <div class="row mt-4">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -94,6 +97,10 @@
                 </table>
             </div>
         </div>
+        <?Php
+           }
+        ?> 
+        <!-- datatable close-->
 
         <div class="row justify-content-md-end mt-2">
             <div class="col col-md-2">
