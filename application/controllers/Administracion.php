@@ -64,6 +64,7 @@ class Administracion extends CI_Controller
             $id = $data->clienteId;
             $facturas = $this->Administracion_model->consultarFacturas($id);
             $data->facturas = $facturas;
+            $data->version = $this->session->tipoVersion;
         }
 
         if ($data == NULL) {
@@ -199,9 +200,9 @@ class Administracion extends CI_Controller
     {
         $resultado = $this->Administracion_model->actualizarUsuario($_POST);
         if ($resultado == true) {
-            $this->session->set_flashdata('status', 'El Usuario se Actualizo con exito');
+            $this->session->set_flashdata('status', 'El Usuario se Actualizo con éxito');
         } else {
-            $this->session->set_flashdata('status', 'Ocurrio un Error al Actualizar el Usuario');
+            $this->session->set_flashdata('status', 'Ocurrió un Error al Actualizar el Usuario');
         }
         redirect("Administracion/listUsuario");
     }

@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid vistaCliente">
 
     <?Php
     if ($this->session->flashdata('status')) :
@@ -18,7 +18,7 @@
     ?>
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Clientes/Actualización</h1>
+    <h1 class="h3 mb-2 text-gray-800" id="titular">Clientes/Actualización</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -66,15 +66,16 @@
                     <div class="col-md-8">
                         <label for="numero">Introduzca el numero a consultar</label>
                         <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero" autofocus required>
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-md-6 align-self-end">
-                        <button type="submit" class="btn btn-primary mb-3" id="consultar">Consultar Cliente</button>
+
+                        <div class="row justify-content-end mt-2">
+                            <div class="col-md-6 align-self-end">
+                                <button type="submit" class="btn btn-primary mb-3" id="consultar">Consultar Cliente</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
-            <div class="row mt-3" id="mensaje">
+            <div class="row mt-1" id="mensaje">
             </div>
         </div>
     </div>
@@ -127,6 +128,8 @@
 
                         }else{
                             $("#mensaje").html(data);
+                            $("#consulta").attr('style', 'display:none;');
+                            $("#titular").attr('style', 'display:none;');
                         }
                     }
                 })
