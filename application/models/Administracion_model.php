@@ -97,7 +97,7 @@ class Administracion_model extends CI_Model
     {
         $campo = $datos['filtro'];
         $valor = $datos['numero'];
-        $this->db->select('c.clienteId, c.clienteRif, c.clienteNic, c.clienteContador, c.clienteSap, c.clienteName, c.telefono, c.mail, c.direccion, c.referencia, c.lat, c.lng, m.serial, m.instalacion, m.aol, m.unidadL, m.dac, m.fabricante, m.ruta, m.itinerario, m.tarifaId');
+        $this->db->select('c.clienteId, c.clienteRif, c.clienteNic, c.clienteContador, c.clienteSap, c.clienteName, c.telefono, c.mail, c.direccion, c.referencia, c.lat, c.lng, c.totalFacturas, c.totalDeuda, m.serial, m.instalacion, m.aol, m.unidadL, m.dac, m.fabricante, m.ruta, m.itinerario, m.tarifaId');
         $this->db->from('nu_clientes c');
         $this->db->join('nu_medidores m', 'm.clienteId = c.clienteId');
         $this->db->where('c.' . $campo, $valor);

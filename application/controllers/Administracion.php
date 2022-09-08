@@ -61,10 +61,13 @@ class Administracion extends CI_Controller
 
         //var_dump($data); die();
         if ($data !== NULL) {
-            $id = $data->clienteId;
-            $facturas = $this->Administracion_model->consultarFacturas($id);
-            $data->facturas = $facturas;
-            $data->version = $this->session->tipoVersion;
+            $version = $this->session->tipoVersion;
+            if ($version !== 0) {
+                $id = $data->clienteId;
+                $facturas = $this->Administracion_model->consultarFacturas($id);
+                $data->facturas = $facturas;
+            }
+            $data->version = $version;
         }
 
         if ($data == NULL) {

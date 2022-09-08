@@ -98,8 +98,11 @@
             </div>
         </div>
         <?Php
+           } else {
+            $cant = $totalFacturas;
+            $deuda = $totalDeuda;
            }
-        ?> 
+        ?>
         <!-- datatable close-->
 
         <div class="row justify-content-md-end mt-2">
