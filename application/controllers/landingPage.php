@@ -22,6 +22,7 @@ class LandingPage extends CI_Controller {
 
 			if (isset($_POST['usuario']) && isset($_POST['clave'])) {
 				$login = $this->Welcome_model->loginUser($_POST);
+				$Version = $this->Config_model->obtenerVersion();
 
 				if ($login) {
 					$arrayUser = array(
@@ -29,6 +30,8 @@ class LandingPage extends CI_Controller {
 						'userName' 			=> $login[0]->userName,
 						'mail'	 			=> $login[0]->mail,
 						'administrador' 	=> $login[0]->admin,
+						'version'			=> $Version[0]->configName,
+						'tipoVersion'		=> $Version[0]->configValue,
 					);
 					$this->session->set_userdata($arrayUser);
 					redirect('administracion');

@@ -1,3 +1,12 @@
 .bg-body {
     background-color: #2f4f4f;
 }
+
+.vistaCliente {
+    font-size: x-small;
+}
+
+.navbar {
+    padding: 0rem;
+    height: 2rem;
+}

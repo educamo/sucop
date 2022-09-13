@@ -7,7 +7,7 @@ class Migration_Alter_user_campos extends CI_Migration {
         public function up()
         {
 
-            $fields = array(                        
+            $fields = array(
                         'direccion' => array(
                             'type' => 'VARCHAR',
                             'constraint' => '255',
