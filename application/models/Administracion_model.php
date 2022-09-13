@@ -104,6 +104,13 @@ class Administracion_model extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
+    public function listarClientes()
+    {
+        $this->db->select('c.clienteId, c.clienteRif, c.clienteNic, c.clienteContador, c.clienteSap, c.clienteName');
+        $this->db->from('nu_clientes c');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function consultarFacturas($id)
     {

@@ -52,29 +52,45 @@ class Administracion extends CI_Controller
         $this->footer();
     }
 
-    public function consultarCliente()
+    public function consultarCliente($filtro = NULL, $numero = NULL)
     {
-        $data['filtro'] = $this->input->post('filtro');
-        $data['numero'] = $this->input->post('numero');
+        $filtro = $this->input->post('filtro');
+        $numero = $this->input->post('numero');
 
-        $data = $this->Administracion_model->consultarCliente($data);
+        if ($filtro == NULL && $numero == NULL) {
+            $data = $this->Administracion_model->listarClientes();
+        }else {
+
+            $data['filtro'] = $filtro;
+            $data['numero'] = $numero;
+
+            $data = $this->Administracion_model->consultarCliente($data);
+        }
 
         //var_dump($data); die();
         if ($data !== NULL) {
             $version = $this->session->tipoVersion;
-            if ($version !== 0) {
+            if ($version !== 0 && $numero != NULL) {
                 $id = $data->clienteId;
                 $facturas = $this->Administracion_model->consultarFacturas($id);
                 $data->facturas = $facturas;
+
+                $data->version = $version;
             }
-            $data->version = $version;
         }
 
         if ($data == NULL) {
             $view = 0;
         } else {
-            $view = $this->load->view('updateClientes', $data);
-            $this->load->view('administracion/end');
+            if ($numero != NULL) {
+                $view = $this->load->view('updateClientes', $data);
+                $this->load->view('administracion/end');
+            } else {
+                //var_dump($data); die();
+                $data["clientes"] = $data;
+                $view = $this->load->view('listClientes', $data);
+                $this->load->view('administracion/end');
+            }
         }
 
         return $view;
