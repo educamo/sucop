@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid vistaCliente">
 
     <?Php
     if ($this->session->flashdata('status')) :
@@ -18,7 +18,7 @@
     ?>
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Clientes/Actualización</h1>
+    <h1 class="h3 mb-2 text-gray-800" id="titular">Clientes/Actualización</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -63,18 +63,22 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <label for="numero">Introduzca el numero a consultar</label>
                         <input class="form-control" type="text" aria-label="Introduzca el numero" name="numero" id="numero" autofocus required>
+
+                        <div class="row justify-content-end mt-2">
+                            <div class="col-md-6 align-self-end">
+                                <button type="submit" class="btn btn-primary mb-3" id="consultar">Consultar Cliente</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-md-6 align-self-end">
-                        <button type="submit" class="btn btn-primary mb-3" id="consultar">Consultar Cliente</button>
+                    <div class="col-md-2">
+                        <a href="#" id="buscar" class="btn btn-success"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
             </form>
-            <div class="row mt-3" id="mensaje">
+            <div class="row mt-1" id="mensaje">
             </div>
         </div>
     </div>
@@ -88,6 +92,51 @@
 <script>
     $(document).ready(function() {
         var urlbase = "<?= base_url(); ?>";
+        $("#buscar").click(function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+
+
+            //creo variable con la url del ajax
+            var urlajax = urlbase + "Administracion/consultarCliente";
+            // Run $.ajax() here
+            // Using the core $.ajax() method
+            $.ajax({
+
+                // The URL for the request
+                url: urlajax,
+
+                // The data to send (will be converted to a query string)
+                data: $(this).serializeArray(),
+
+                // Whether this is a POST or GET request
+                type: "POST",
+
+
+                beforeSend: function(objeto) {
+                    var cargando = '<div class="d-flex align-items-center"><strong>Cargando... </strong><div class="spinner-border ms-auto text-primary " role="status" aria-hidden="true"></div></div>';
+                    $("#mensaje").html(cargando);
+                    $("#consultar").attr('disabled', 'disabled');
+                    $("#numero").attr('disabled', 'disabled');
+                    $("[name='filtro']").attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    if (data == 0) {
+                        $('#mensaje').html("El Cliente no existe, por favor verifica los datos");
+                        $("#consultar").removeAttr('disabled');
+                        $("#numero").removeAttr('disabled');
+                        $("[name='filtro']").removeAttr('disabled');
+
+                    } else {
+                        $("#mensaje").html(data);
+                        $("#consultar").removeAttr('disabled');
+                        $("#numero").removeAttr('disabled');
+                        $("[name='filtro']").removeAttr('disabled');
+                    }
+                }
+            })
+        });
+
         $("#consulta").submit(function(event) {
 
             // Prevent the form from submitting
@@ -101,35 +150,37 @@
             // Using the core $.ajax() method
             $.ajax({
 
-                    // The URL for the request
-                    url: urlajax,
+                // The URL for the request
+                url: urlajax,
 
-                    // The data to send (will be converted to a query string)
-                    data: $(this).serializeArray(),
+                // The data to send (will be converted to a query string)
+                data: $(this).serializeArray(),
 
-                    // Whether this is a POST or GET request
-                    type: "POST",
+                // Whether this is a POST or GET request
+                type: "POST",
 
 
-                    beforeSend: function(objeto) {
-                        var cargando =  '<div class="d-flex align-items-center"><strong>Cargando... </strong><div class="spinner-border ms-auto text-primary " role="status" aria-hidden="true"></div></div>';
-                        $("#mensaje").html(cargando);
-                        $("#consultar").attr('disabled', 'disabled');
-                        $("#numero").attr('disabled', 'disabled');
-                        $("[name='filtro']").attr('disabled', 'disabled');
-                    },
-                    success: function(data) {
-                        if (data== 0) {
-                            $('#mensaje').html("El Cliente no existe, por favor verifica los datos");
-                            $("#consultar").removeAttr('disabled');
-                            $("#numero").removeAttr('disabled');
-                            $("[name='filtro']").removeAttr('disabled');
+                beforeSend: function(objeto) {
+                    var cargando = '<div class="d-flex align-items-center"><strong>Cargando... </strong><div class="spinner-border ms-auto text-primary " role="status" aria-hidden="true"></div></div>';
+                    $("#mensaje").html(cargando);
+                    $("#consultar").attr('disabled', 'disabled');
+                    $("#numero").attr('disabled', 'disabled');
+                    $("[name='filtro']").attr('disabled', 'disabled');
+                },
+                success: function(data) {
+                    if (data == 0) {
+                        $('#mensaje').html("El Cliente no existe, por favor verifica los datos");
+                        $("#consultar").removeAttr('disabled');
+                        $("#numero").removeAttr('disabled');
+                        $("[name='filtro']").removeAttr('disabled');
 
-                        }else{
-                            $("#mensaje").html(data);
-                        }
+                    } else {
+                        $("#mensaje").html(data);
+                        $("#consulta").attr('style', 'display:none;');
+                        $("#titular").attr('style', 'display:none;');
                     }
-                })
+                }
+            })
         });
 
     });

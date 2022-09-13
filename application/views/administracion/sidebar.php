@@ -9,7 +9,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>Administracion">
         <div class="sidebar-brand-icon rotate-n-15">
-          <img src="<?= base_url() ?>assets/img/logo.png" alt="Logo" style="width: 50%; height: 50%;">
+          <img src="<?= base_url() ?>assets/img/logo2.png" alt="Logo" style="width: 50%; height: 50%;">
         </div>
         <div class="sidebar-brand-text mx-3">SUCOP</div>
       </a>
